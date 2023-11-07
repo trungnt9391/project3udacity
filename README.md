@@ -36,4 +36,6 @@ Monthly Cost: $36
 Reasoning: Choosing a Basic tier Azure Web App with a single B1 instance running Linux is cost-effective for hosting my web application. This tier offers sufficient resources for a low to moderate traffic website, and it aligns with my expected usage of 2000 hours per month, making it a cost-effective choice for my scenario.
 
 My selection of Azure resources and service tiers appears to be well-considered in terms of cost-effectiveness for my application's requirements. My total monthly cost estimate of $240.44 is reasonable for the services and resources I've chosen, given the expected workload and usage patterns.
- 
+Drawbacks of the existing architecture include the risk of HTTP timeout errors, particularly for time-consuming tasks, which can hinder user experience and system stability.
+
+The current architecture offers advantages by employing Azure Service Bus Queue and Azure Functions to decouple the web app's processes, enabling efficient background processing, such as sending emails. This decoupling improves performance, scalability, and cost-effectiveness, while also facilitating error isolation and streamlined task management.
