@@ -67,8 +67,26 @@ def notification():
             db.session.add(notification)
             db.session.commit()
 
-            # Call servicebus queue_client to enqueue notification ID
-            queue_client.send(Message('{}'.format(notification.id)))
+            ##################################################
+            ## TODO: Refactor This logic into an Azure Function
+            ## Code below will be replaced by a message queue
+            #################################################
+            # attendees = Attendee.query.all()
+
+            # for attendee in attendees:
+            #     subject = '{}: {}'.format(attendee.first_name, notification.subject)
+            #     send_email(attendee.email, subject, notification.message)
+
+            # notification.completed_date = datetime.utcnow()
+            # notification.status = 'Notified {} attendees'.format(len(attendees))
+            # db.session.commit()
+            #Coud not get API of send grid
+            # TODO Call servicebus queue_client to enqueue notification ID
+            send_message =Message(body=str(notification.id))
+            queue_client.send(send_message)
+            #################################################
+            ## END of TODO
+            #################################################
 
             return redirect('/Notifications')
         except :
