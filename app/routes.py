@@ -66,6 +66,7 @@ def notification():
         try:
             db.session.add(notification)
             db.session.commit()
+            #Can't get send grid api
             send_message =Message(body=str(notification.id))
             queue_client.send(send_message)
             return redirect('/Notifications')
